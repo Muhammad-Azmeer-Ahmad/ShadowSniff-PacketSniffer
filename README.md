@@ -1,92 +1,74 @@
-# ShadowSniff Packet Sniffer
+# ShadowSniff
 
-🔍 A **lightweight C++ packet sniffer and analyzer**, capturing live network traffic 🎯 and logging packets for detailed inspection 📄. Comes with a Python-based analyzer for easy review 📊. Fully CLI-driven and designed to run smoothly on Linux systems 💻.
+A lightweight C++ packet sniffer for Linux. Captures live network traffic from a network interface, logs raw packets to file, and includes a Python script for post-capture analysis.
 
----
-
-## ⚠️ Important Note
-
-This project runs **locally on Linux** 💻 and requires root privileges to capture packets.  
-It is **not designed for deployment on servers** 🌐 and is intended for practical network monitoring and learning.
-
-🛠️ **Feel free to:**
-- 📥 Clone the repository  
-- 🧑‍💻 Explore and modify the code  
-- 🧪 Test and analyze network traffic  
-- 🚀 Use it as a base for packet sniffing or analysis projects
-
-✅ Great for developers, cybersecurity enthusiasts, and network admins!
+> **Requires root privileges.** Only use on networks you own or have authorization to monitor.
 
 ---
 
-## 🚀 Features
+## Features
 
-- **Live Packet Capture**: Capture network traffic in real-time from interfaces.  
-- **Packet Logging**: Logs raw packets to files for later analysis.  
-- **Python Analyzer**: Analyze logged data with an easy-to-use Python script.  
-- **CLI Interface**: Simple command-line control with clear options.  
-- **Lightweight & Fast**: Minimal dependencies, focusing on performance.
+- **Live Capture** — Captures packets in real time from any available network interface
+- **Packet Logging** — Writes raw packet data to `logs/packet.log` for offline review
+- **Python Analyzer** — `src/analyzer.py` parses and summarizes captured log data
+- **CLI-driven** — No GUI dependencies; minimal footprint
 
 ---
 
-## 📦 Clone & Run Locally
+## Requirements
 
-### 1️⃣ Clone the repository:
-```bash
-git clone https://github.com/yourusername/shadowsniff.git
-cd shadowsniff
-```
+- Linux OS (raw socket support required)
+- G++ compiler
+- Python 3
+- Root privileges (`sudo`)
 
-### 2️⃣ Compile the source code (only if binary not found):
-```bash
-gcc src/main.cpp src/packet_sniffer.cpp src/protocol_parser.cpp -o src/a.out
-```
+---
 
-### 3️⃣ Make the run script executable:
+## Getting Started
+
 ```bash
+git clone https://github.com/Muhammad-Azmeer-Ahmad/ShadowSniff-PacketSniffer.git
+cd ShadowSniff-PacketSniffer
+
+# Compile
+g++ src/main.cpp src/packet_sniffer.cpp src/protocol_parser.cpp -o src/shadowsniff
+
+# Make run script executable
 chmod +x run.sh
+
+# Run
+sudo ./run.sh
 ```
-
-### 4️⃣ Run the script:
-```bash
-./run.sh
-```
-## 🛠️ Manual Compilation 💻⚙️
-
-If the **binary** is missing or you wanna **recompile** the program, just run this command:
-
-```bash
-gcc src/main.cpp src/packet_sniffer.cpp src/protocol_parser.cpp -o src/a.out
-```
-
-## 🗂️ Project Structure
-
-```bash
-ShadowSniff/
-│
-├── run.sh                     # Main bash script to compile & run
-├── logs/                      # Folder to store captured packet logs
-│   └── packet.log             # Packet capture log file
-│
-├── src/                       # Source code & analyzer script
-│   ├── main.cpp               # Main C++ program
-│   ├── packet_sniffer.cpp     # Packet sniffing logic
-│   ├── protocol_parser.cpp    # Packet parsing logic
-│   ├── packet_sniffer.h       # Header file for packet sniffer
-│   └── analyzer.py            # Python script to analyze logs 📊🐍
-│
-└── README.md                  # Project overview & instructions 📘
-```
-
-## ⚙️ Requirements
-
-- 🐧 Linux OS (recommended for raw socket support)  
-- 🛠️ GCC compiler (`gcc`)  
-- 🐍 Python 3 (for log analysis)  
-- 🔐 Root privileges (run with `sudo` to sniff packets)  
 
 ---
 
-Feel free to open issues or contribute! Let's make network monitoring fun & easy! 🚀🎯
+## Analyze Captured Packets
 
-Happy sniffing! 🎉🕵️‍♂️📡
+```bash
+python3 src/analyzer.py
+```
+
+Reads from `logs/packet.log` and outputs a structured summary of captured traffic.
+
+---
+
+## Project Structure
+
+```
+ShadowSniff/
+├── run.sh                        # Build and run script
+├── logs/
+│   └── packet.log                # Captured packet output
+└── src/
+    ├── main.cpp                  # Entry point
+    ├── packet_sniffer.cpp        # Capture logic (raw sockets)
+    ├── packet_sniffer.h
+    ├── protocol_parser.cpp       # Protocol parsing (TCP/UDP/ICMP)
+    └── analyzer.py               # Python log analyzer
+```
+
+---
+
+## License
+
+MIT
