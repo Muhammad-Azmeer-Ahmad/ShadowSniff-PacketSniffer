@@ -45,6 +45,8 @@
 
 ## Installation & Usage
 
+> The package already includes a ready-to-use `run.sh` script — no setup required beyond compiling, so you can build and test instantly.
+
 ```bash
 # Clone the repository
 git clone https://github.com/Muhammad-Azmeer-Ahmad/ShadowSniff-PacketSniffer.git
