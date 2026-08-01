@@ -10,6 +10,8 @@
 
 > ⚠️ **Requires root privileges.** ShadowSniff opens raw sockets and must be run with `sudo`. Only use it on networks you own or are explicitly authorized to monitor. Unauthorized packet capture may be illegal in your jurisdiction.
 
+> 🐧 **Linux only — will not run on native Windows.** ShadowSniff uses raw sockets (`AF_PACKET`), a Linux kernel feature with no equivalent on Windows — this includes Git Bash, MINGW64, and Cygwin, which only emulate a Unix-like shell on top of the Windows kernel. Attempting to compile or run it there will fail with errors like `g++: command not found` or `Exec format error`. **Windows users must run this inside [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install)** (`wsl --install`, then use an Ubuntu shell) or a Linux VM.
+
 ---
 
 ## Demo
@@ -36,10 +38,24 @@
 
 ## Requirements
 
-- Linux OS (raw socket support required)
+- **Linux OS** (raw socket support required) — native Linux, WSL2, or a Linux VM. **Not compatible with native Windows, Git Bash, MINGW64, or Cygwin.**
 - `g++` (C++11 or later)
 - Python 3
 - Root privileges (`sudo`)
+
+### Windows Users
+
+Native Windows cannot run ShadowSniff — there's no raw-socket equivalent outside the Linux kernel. Use **WSL2** instead:
+
+```bash
+# In PowerShell (one-time setup)
+wsl --install
+
+# Then open the Ubuntu shell it installs and continue below
+sudo apt update && sudo apt install g++ python3 -y
+```
+
+Once inside WSL2's Ubuntu shell, follow the standard steps below as normal.
 
 ---
 
