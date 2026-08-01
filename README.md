@@ -81,7 +81,7 @@ sudo ./run.sh
 ### Analyze Captured Packets
 
 ```bash
-python3 src/analyzer.py
+python3 src/analyze.py
 ```
 
 Reads from `logs/packet.log` and prints a structured summary of captured traffic (packet counts, protocol breakdown, top talkers, etc.).
